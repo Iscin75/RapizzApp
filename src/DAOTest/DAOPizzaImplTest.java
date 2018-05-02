@@ -4,7 +4,6 @@ import java.util.Vector;
 
 import DAO.DAOFactory;
 import DAOInterface.DAOPizza;
-import metier.Client;
 import metier.Ingredient;
 import metier.Pizza;
 

@@ -4,7 +4,6 @@ import java.util.Vector;
 
 import DAO.DAOFactory;
 import DAOInterface.DAOLivraison;
-import metier.Client;
 import metier.EtatLivraison;
 import metier.Livraison;
 import metier.Livreur;

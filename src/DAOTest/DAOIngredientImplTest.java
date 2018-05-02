@@ -3,7 +3,6 @@ package DAOTest;
 import java.util.Vector;
 
 import DAOInterface.DAOIngredient;
-import metier.Client;
 import metier.Ingredient;
 
 public class DAOIngredientImplTest implements DAOIngredient {

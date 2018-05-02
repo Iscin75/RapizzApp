@@ -2,7 +2,6 @@ package DAOInterface;
 
 import java.util.Vector;
 
-import metier.Client;
 import metier.Pizza;
 
 public interface DAOPizza {

@@ -3,7 +3,6 @@ package DAOTest;
 import java.util.Vector;
 
 import DAOInterface.DAOTransport;
-import metier.Client;
 import metier.Transport;
 
 public class DAOTransportImplTest implements DAOTransport {

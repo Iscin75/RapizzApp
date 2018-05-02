@@ -1,7 +1,6 @@
 package metier;
 
 import java.util.Date;
-import java.util.Vector;
 
 public class Commande {
 	public Commande(int id, float prix, Date dateCommande, Client client, Pizza pizza, Livraison livraison) {

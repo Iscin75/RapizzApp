@@ -1,5 +1,4 @@
 package DAO;
-import DAO.*;
 import DAOInterface.DAOClient;
 import DAOInterface.DAOCommande;
 import DAOInterface.DAOIngredient;
@@ -8,21 +7,44 @@ import DAOInterface.DAOLivreur;
 import DAOInterface.DAOPizza;
 import DAOInterface.DAOTransport;
 import DAOTest.*;
-public class DAOFactory {
-	static public DAOFactory me;
-	
-	static public DAOFactory GetMeDAOFactory() {
 
+import com.mysql.jdbc.Connection;
+import java.sql.DriverManager;
+import java.util.Properties;
+
+public class DAOFactory {
+	
+	public Connection conn;
+	public static DAOFactory db;
+	
+	private DAOFactory()
+	{
+		String url = "jdbc:mysql://localhost:3306/";
+		String dbName = "Rapizz";
+		String driver = "com.mysql.jdbc.Driver";
+		Properties properties = new Properties();
+		properties.setProperty("user", "root");
+		properties.setProperty("password", "");
+		properties.setProperty("useSSL", "false");
+		properties.setProperty("autoReconnect", "true");
 		
-		if (me==null)
-			me=new DAOFactory();
-		
-		
-		return me;
-	}
+		try {
+	            Class.forName(driver).newInstance();
+	            this.conn = (Connection)DriverManager.getConnection(url+dbName,properties);
+	        }
+	        catch (Exception sqle) {
+	            sqle.printStackTrace();
+	        }
+	 }
+	
+	public static synchronized DAOFactory getConnection() {
+        if ( db == null ) {
+            db = new DAOFactory();
+        }
+        return db;
+    }
 	
 	
-	/* TODO Faire la connexion à la bdd ici ! */
 	static public DAOCommande theDAOCommande;
 	
 	static public DAOCommande GetMeDAOCommande() {

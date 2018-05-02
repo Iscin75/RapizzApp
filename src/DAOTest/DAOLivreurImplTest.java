@@ -1,9 +1,7 @@
 package DAOTest;
 
 import java.util.Vector;
-
 import DAOInterface.DAOLivreur;
-import metier.Client;
 import metier.Livreur;
 
 public class DAOLivreurImplTest implements DAOLivreur {
