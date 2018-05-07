@@ -1,6 +1,6 @@
 import java.util.Vector;
 
-import DAO.DAOFactory;
+import DAO.DAOConnector;
 import DAOInterface.*;
 import metier.*;
 
@@ -27,7 +27,7 @@ public class main {
 		Vector <Commande> vc = dao.GetAll();
 		System.out.println(dao.GetById(1).id);
 		
-		DAOFactory dc = DAOFactory.getConnection();
+		DAOConnector dc = DAOConnector.getConnection();
 		
 
 	}
