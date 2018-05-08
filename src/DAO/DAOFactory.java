@@ -8,41 +8,9 @@ import DAOInterface.DAOPizza;
 import DAOInterface.DAOTransport;
 import DAOTest.*;
 
-import com.mysql.jdbc.Connection;
-import java.sql.DriverManager;
-import java.util.Properties;
+
 
 public class DAOFactory {
-	
-	public Connection conn;
-	public static DAOFactory db;
-	
-	private DAOFactory()
-	{
-		String url = "jdbc:mysql://localhost:3306/";
-		String dbName = "Rapizz";
-		String driver = "com.mysql.jdbc.Driver";
-		Properties properties = new Properties();
-		properties.setProperty("user", "root");
-		properties.setProperty("password", "");
-		properties.setProperty("useSSL", "false");
-		properties.setProperty("autoReconnect", "true");
-		
-		try {
-	            Class.forName(driver).newInstance();
-	            this.conn = (Connection)DriverManager.getConnection(url+dbName,properties);
-	        }
-	        catch (Exception sqle) {
-	            sqle.printStackTrace();
-	        }
-	 }
-	
-	public static synchronized DAOFactory getConnection() {
-        if ( db == null ) {
-            db = new DAOFactory();
-        }
-        return db;
-    }
 	
 	
 	static public DAOCommande theDAOCommande;
