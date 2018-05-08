@@ -1,139 +1,117 @@
-#------------------------------------------------------------
-#        Script MySQL.
-#------------------------------------------------------------
-
-
-CREATE DATABASE IF NOT EXISTS rapizz;
+CREATE DATABASE rapizz;
 USE rapizz;
 
-#------------------------------------------------------------
-# Table: assoc_pizzas_ingredients
-#------------------------------------------------------------
-
-CREATE TABLE assoc_pizzas_ingredients(
-        id             Int NOT NULL ,
-        id_pizzas      Int NOT NULL ,
-        id_ingredients Int NOT NULL ,
-        PRIMARY KEY (id )
-)ENGINE=InnoDB;
-
-
-#------------------------------------------------------------
-# Table: clients
-#------------------------------------------------------------
-
-CREATE TABLE clients(
-        id           Int NOT NULL ,
-        username     Varchar (20) NOT NULL ,
-        password     Varchar (20) NOT NULL ,
-        solde        Float NOT NULL ,
-        nb_commandes Int NOT NULL ,
-        PRIMARY KEY (id )
-)ENGINE=InnoDB;
+DROP TABLE IF EXISTS `assoc_pizzas_ingredients`;
+CREATE TABLE IF NOT EXISTS `assoc_pizzas_ingredients` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `pizza` int(11) NOT NULL,
+  `ingredient` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `ingre` (`ingredient`),
+  KEY `pizz` (`pizza`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
-#------------------------------------------------------------
-# Table: commandes
-#------------------------------------------------------------
-
-CREATE TABLE commandes(
-        id                Int NOT NULL ,
-        tarif             Float NOT NULL ,
-        date_commande     Date NOT NULL ,
-        id_clients        Int NOT NULL ,
-        id_pizzas         Int NOT NULL ,
-        id_formats_pizzas Int NOT NULL ,
-        id_livraisons     Int NOT NULL ,
-        PRIMARY KEY (id )
-)ENGINE=InnoDB;
+DROP TABLE IF EXISTS `clients`;
+CREATE TABLE IF NOT EXISTS `clients` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nom` varchar(20) NOT NULL,
+  `prenom` varchar(20) NOT NULL,
+  `adresse` varchar(40) NOT NULL,
+  `ville` varchar(20) NOT NULL,
+  `solde` float NOT NULL,
+  `nb_commandes` int(2) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 
-#------------------------------------------------------------
-# Table: formats_pizzas
-#------------------------------------------------------------
-
-CREATE TABLE formats_pizzas(
-        id           Int NOT NULL ,
-        nom          Varchar (10) NOT NULL ,
-        ratio        Float NOT NULL ,
-        id_commandes Int NOT NULL ,
-        PRIMARY KEY (id )
-)ENGINE=InnoDB;
-
-
-#------------------------------------------------------------
-# Table: ingredients
-#------------------------------------------------------------
-
-CREATE TABLE ingredients(
-        id  Int NOT NULL ,
-        nom Varchar (20) NOT NULL ,
-        PRIMARY KEY (id )
-)ENGINE=InnoDB;
+DROP TABLE IF EXISTS `commandes`;
+CREATE TABLE IF NOT EXISTS `commandes` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `client` int(11) NOT NULL,
+  `pizza` int(11) NOT NULL,
+  `taille` int(2) NOT NULL,
+  `tarif` float NOT NULL,
+  `date_commande` datetime NOT NULL,
+  `livraison` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `client` (`client`),
+  KEY `pizza` (`pizza`),
+  KEY `taille` (`taille`),
+  KEY `livraison` (`livraison`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
-#------------------------------------------------------------
-# Table: livraisons
-#------------------------------------------------------------
-
-CREATE TABLE livraisons(
-        id             Int NOT NULL ,
-        date_livraison Date NOT NULL ,
-        statut         Enum NOT NULL ,
-        id_commandes   Int NOT NULL ,
-        id_livreur     Int NOT NULL ,
-        id_transports  Int NOT NULL ,
-        PRIMARY KEY (id )
-)ENGINE=InnoDB;
+DROP TABLE IF EXISTS `formats_pizzas`;
+CREATE TABLE IF NOT EXISTS `formats_pizzas` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nom` varchar(40) NOT NULL,
+  `ratio` float NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 
-#------------------------------------------------------------
-# Table: livreur
-#------------------------------------------------------------
-
-CREATE TABLE livreur(
-        id            Int NOT NULL ,
-        nom           Varchar (20) NOT NULL ,
-        prenom        Varchar (20) NOT NULL ,
-        id_livraisons Int NOT NULL ,
-        PRIMARY KEY (id )
-)ENGINE=InnoDB;
+DROP TABLE IF EXISTS `ingredients`;
+CREATE TABLE IF NOT EXISTS `ingredients` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nom` varchar(40) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=latin1;
 
 
-#------------------------------------------------------------
-# Table: pizzas
-#------------------------------------------------------------
+DROP TABLE IF EXISTS `livraisons`;
+CREATE TABLE IF NOT EXISTS `livraisons` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `livreur` int(11) NOT NULL,
+  `date_livraison` datetime DEFAULT NULL,
+  `transport` int(11) NOT NULL,
+  `statut` enum('terminée','en cours') NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `livreur` (`livreur`),
+  KEY `vehicule` (`transport`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-CREATE TABLE pizzas(
-        id           Int NOT NULL ,
-        nom          Varchar (10) NOT NULL ,
-        base_prix    Float NOT NULL ,
-        id_commandes Int NOT NULL ,
-        PRIMARY KEY (id )
-)ENGINE=InnoDB;
+
+DROP TABLE IF EXISTS `livreur`;
+CREATE TABLE IF NOT EXISTS `livreur` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nom` varchar(40) NOT NULL,
+  `prenom` varchar(40) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 
-#------------------------------------------------------------
-# Table: transports
-#------------------------------------------------------------
+DROP TABLE IF EXISTS `pizzas`;
+CREATE TABLE IF NOT EXISTS `pizzas` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nom` varchar(40) NOT NULL,
+  `base_prix` float NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-CREATE TABLE transports(
-        id            Int NOT NULL ,
-        nom           Varchar (10) NOT NULL ,
-        id_livraisons Int NOT NULL ,
-        PRIMARY KEY (id )
-)ENGINE=InnoDB;
 
-ALTER TABLE assoc_pizzas_ingredients ADD CONSTRAINT FK_assoc_pizzas_ingredients_id_pizzas FOREIGN KEY (id_pizzas) REFERENCES pizzas(id);
-ALTER TABLE assoc_pizzas_ingredients ADD CONSTRAINT FK_assoc_pizzas_ingredients_id_ingredients FOREIGN KEY (id_ingredients) REFERENCES ingredients(id);
-ALTER TABLE commandes ADD CONSTRAINT FK_commandes_id_clients FOREIGN KEY (id_clients) REFERENCES clients(id);
-ALTER TABLE commandes ADD CONSTRAINT FK_commandes_id_pizzas FOREIGN KEY (id_pizzas) REFERENCES pizzas(id);
-ALTER TABLE commandes ADD CONSTRAINT FK_commandes_id_formats_pizzas FOREIGN KEY (id_formats_pizzas) REFERENCES formats_pizzas(id);
-ALTER TABLE commandes ADD CONSTRAINT FK_commandes_id_livraisons FOREIGN KEY (id_livraisons) REFERENCES livraisons(id);
-ALTER TABLE formats_pizzas ADD CONSTRAINT FK_formats_pizzas_id_commandes FOREIGN KEY (id_commandes) REFERENCES commandes(id);
-ALTER TABLE livraisons ADD CONSTRAINT FK_livraisons_id_commandes FOREIGN KEY (id_commandes) REFERENCES commandes(id);
-ALTER TABLE livraisons ADD CONSTRAINT FK_livraisons_id_livreur FOREIGN KEY (id_livreur) REFERENCES livreur(id);
-ALTER TABLE livraisons ADD CONSTRAINT FK_livraisons_id_transports FOREIGN KEY (id_transports) REFERENCES transports(id);
-ALTER TABLE livreur ADD CONSTRAINT FK_livreur_id_livraisons FOREIGN KEY (id_livraisons) REFERENCES livraisons(id);
-ALTER TABLE pizzas ADD CONSTRAINT FK_pizzas_id_commandes FOREIGN KEY (id_commandes) REFERENCES commandes(id);
-ALTER TABLE transports ADD CONSTRAINT FK_transports_id_livraisons FOREIGN KEY (id_livraisons) REFERENCES livraisons(id);
+DROP TABLE IF EXISTS `transports`;
+CREATE TABLE IF NOT EXISTS `transports` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nom` varchar(40) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+
+
+ALTER TABLE `assoc_pizzas_ingredients`
+  ADD CONSTRAINT `ingre` FOREIGN KEY (`ingredient`) REFERENCES `ingredients` (`id`),
+  ADD CONSTRAINT `pizz` FOREIGN KEY (`pizza`) REFERENCES `pizzas` (`id`);
+
+
+ALTER TABLE `commandes`
+  ADD CONSTRAINT `client` FOREIGN KEY (`client`) REFERENCES `clients` (`id`),
+  ADD CONSTRAINT `livraison` FOREIGN KEY (`livraison`) REFERENCES `livraisons` (`id`),
+  ADD CONSTRAINT `pizza` FOREIGN KEY (`pizza`) REFERENCES `pizzas` (`id`),
+  ADD CONSTRAINT `taille` FOREIGN KEY (`taille`) REFERENCES `formats_pizzas` (`id`);
+
+
+ALTER TABLE `livraisons`
+  ADD CONSTRAINT `livreur` FOREIGN KEY (`livreur`) REFERENCES `livreur` (`id`),
+  ADD CONSTRAINT `vehicule` FOREIGN KEY (`transport`) REFERENCES `transports` (`id`);
+COMMIT;
+
