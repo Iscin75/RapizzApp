@@ -11,12 +11,12 @@ public class DAOConnector {
 	
 	private DAOConnector()
 	{
-		String url = "jdbc:mysql://localhost:3306/";
-		String dbName = "Rapizz";
-		String driver = "com.mysql.jdbc.Driver";
+		String url = "jdbc:mysql://159.180.243.29:3306/";
+		String dbName = "rapizz";
+		String driver = "com.mysql.cj.jdbc.Driver";
 		Properties properties = new Properties();
-		properties.setProperty("user", "root");
-		properties.setProperty("password", "");
+		properties.setProperty("user", "mysql");
+		properties.setProperty("password", "RapizzBDD./00");
 		properties.setProperty("useSSL", "false");
 		properties.setProperty("autoReconnect", "true");
 		
