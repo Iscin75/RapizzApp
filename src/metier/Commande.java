@@ -3,6 +3,7 @@ package metier;
 import java.util.Date;
 
 public class Commande {
+	static Commande me;
 	public Commande(int id, float prix, Date dateCommande, Client client, Pizza pizza, Livraison livraison) {
 		super();
 		this.id = id;
@@ -11,6 +12,7 @@ public class Commande {
 		this.client = client;
 		this.pizza = pizza;
 		this.livraison = livraison;
+		me = this;
 	}
 	public int id;
 	public float prix;
@@ -18,5 +20,7 @@ public class Commande {
 	public Client client;
 	public Pizza pizza;
 	public Livraison livraison;
+	
+
 	
 }

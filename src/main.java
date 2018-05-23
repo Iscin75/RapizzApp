@@ -1,7 +1,8 @@
 import java.util.Vector;
 
-import DAO.DAOConnector;
-import DAOInterface.*;
+
+
+import DAO.*;
 import metier.*;
 
 public class main {
@@ -9,27 +10,16 @@ public class main {
 	public static void main(String[] args) {
 		
 
-		DAOPizza daoPizza = DAO.DAOFactory.GetMeDAOPizza();
-		Vector <Pizza> vcPizza = daoPizza.GetAll();
-		System.out.println(vcPizza.get(0).id);
-		
-		DAOLivreur daoLivreur = DAO.DAOFactory.GetMeDAOLivreur();
-		Vector <Livreur> vcLivreur = daoLivreur.GetAll();
-		System.out.println(vcLivreur.get(0).id);
-		
-		
-		
-		DAOLivraison daoLivraison = DAO.DAOFactory.GetMeDAOLivraison();
-		Vector <Livraison> vcLivraison = daoLivraison.GetAll();
-		System.out.println(vcLivraison.get(0).id);
-		
-		DAOCommande dao = DAO.DAOFactory.GetMeDAOCommande();
-		Vector <Commande> vc = dao.GetAll();
-		System.out.println(dao.GetById(1).id);
-		
-		DAOConnector dc = DAOConnector.getConnection();
-		
-
+		DAOPizza daoPizza = DAOPizza.getThatDAO();
+		Vector<Pizza> pizzas = daoPizza.GetAll();
+		for (int i=0; i<pizzas.size();i++) {
+			System.out.print(pizzas.get(i).id+pizzas.get(i).nom );
+			for (int j=0; j<pizzas.get(i).ingredients.size();j++) {
+				System.out.print(pizzas.get(i).ingredients.get(j).id +pizzas.get(i).ingredients.get(j).nom );
+			}
+			System.out.println("");
+		}
+		//TODO créer la commande affichant la JFrame
 	}
 
 }
