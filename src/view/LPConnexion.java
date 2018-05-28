@@ -1,4 +1,4 @@
-package vue;
+package view;
 
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;

@@ -4,7 +4,8 @@ import java.util.Vector;
 
 import metier.*;
 
-
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Date;
 
 public class DAOCommande extends DAO {
@@ -33,19 +34,27 @@ public class DAOCommande extends DAO {
 
 	public Vector<Commande> GetAll() {
 		Vector<Commande> allCmd = new Vector<Commande>();
-		// ResultSet varReturn = make.resquest( "SELECT * FROM commandes;" );
-		/*
-		while( next(x) )
-		{
-			int id = varReturn.getInt(1);
-			float tarif = varReturn.getFloat(2);
-			time dt_cmd = varReturn.getDatetime(3);
-			Client client = getClient( varReturn.getInt(4) ); 
-			Pizza pizza = getPizza( varReturn.getInt(5) );
-			Livraison livraison = getLivraison( varReturn.getInt(7) );
-			
-			allCmd.add( new Commande(id, tarif, dt_cmd, client, pizza, livraison);
-		}*/
+		
+		ResultSet varReturn;
+		try {
+			varReturn = query( "SELECT * FROM commandes;" );
+			while( varReturn.next() )
+			{
+				int id = varReturn.getInt(1);
+				Client client = DAOClient.getThatDAO().GetById( varReturn.getInt(2) ); 
+				Pizza pizza = DAOPizza.getThatDAO().GetById( varReturn.getInt(3) );
+				int taille = varReturn.getInt(4);
+				float tarif = varReturn.getFloat(5);
+				java.sql.Date date = varReturn.getDate(6);
+				Livraison livraison = DAOLivraison.getThatDAO().GetById( varReturn.getInt(7) );
+				
+				allCmd.add( new Commande(id, client, pizza, taille, tarif, date, livraison));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		return allCmd;
 	}
 	
