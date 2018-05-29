@@ -1,48 +1,74 @@
-package vue;
+package view;
 
-import java.awt.EventQueue;
+import java.awt.BorderLayout;
+import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 
 public class MainFrame extends JFrame {
 
-	private JPanel contentPane;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					MainFrame frame = new MainFrame();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+	private static final long serialVersionUID = -70427993833584366L;
+	private JPanel header;
+	private JPanel footer;
+	private JPanel corps;
+	
+	public MainFrame(){
+		
+		initialize();
+	}
+	
+	private void initialize() {
+		try{
+			this.setIconImage(Toolkit.getDefaultToolkit().getImage(MainFrame.class.getResource("/view/img/logo.png")));
+			this.setBounds(100, 100, 720, 520);
+			this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			setLayout(new BorderLayout(0, 0));
+			this.setResizable(false);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void header_content(){	
+		this.getContentPane().add(header,BorderLayout.NORTH);
+	}
+	public JPanel getHeader(){
+		return header;
+	}
+	public void setHeader(JPanel header){
+		this.header = header;
+	}	
+	
+
+	public void corps(){	
+		this.getContentPane().add(corps,BorderLayout.CENTER);
+		
+	
+	}
+	public JPanel getCorps(){
+		return corps;
+		
+	}
+	public void setCorps(JPanel c){
+		
+		this.corps = c;
+		
+	}
+	
+	public void footer_content(){	
+		this.getContentPane().add(footer,BorderLayout.SOUTH);
+	}
+	public void setFooter(JPanel footer){
+		this.footer = footer;
+	}
+	
+	public void remake(){
+		corps();
+		header_content();
+		revalidate();
+		repaint();
 	}
 
-	/**
-	 * Create the frame.
-	 */
-	public MainFrame() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 950, 600);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
-		
-		//JPanel panel = new LPConnexion();
-		JPanel panel = new LPMenuButton();
-		contentPane.add(panel);
-		
-		JPanel panel_1 = new RPPizzas();
-		panel_1.setBounds(228, 0, 706, 561);
-		contentPane.add(panel_1);
-	}
 }

@@ -2,7 +2,6 @@ package DAO;
 
 import java.util.Vector;
 
-import metier.Livraison;
 import metier.Livreur;
 
 public class DAOLivreur extends DAO {

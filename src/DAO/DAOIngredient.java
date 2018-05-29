@@ -2,7 +2,6 @@ package DAO;
 
 import java.util.Vector;
 
-import metier.Commande;
 import metier.Ingredient;
 
 public class DAOIngredient extends DAO {
