@@ -1,7 +1,7 @@
 package metier;
 
 public class Livraison {
-	public Livraison(int id, EtatLivraison etat, Livreur livreur, Transport transport) {
+	public Livraison(int id, Livreur livreur, Transport transport, EtatLivraison etat) {
 		super();
 		this.id = id;
 		this.etat = etat;

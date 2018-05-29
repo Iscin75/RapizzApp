@@ -41,9 +41,31 @@ public class DAOClient extends DAO {
 		return toReturn;
 	}
 
-	public Vector<Client> GetAll() {
+	public Vector<Client> GetAll() throws SQLException {
 		Vector<Client> toReturn = new Vector<Client>(); 
-		// TODO A faire !
+		
+		ResultSet varReturn = query( "SELECT * FROM clients;");
+        while( varReturn.next())
+        {
+        	int id1 = varReturn.getInt(1);
+        	String nom = varReturn.getString(2);
+        	String prenom = varReturn.getString(3);
+        	String adresse = varReturn.getString(4);
+        	String ville = varReturn.getString(5);
+        	float solde = varReturn.getFloat(6);
+        	int nombreCommande = varReturn.getInt(7);
+        	
+			toReturn.add (new Client(
+					id1,
+					nom,
+					prenom,
+					adresse,
+					ville,
+					solde,
+					nombreCommande));
+        }
+		
+		varReturn.close();
 		return toReturn;
 	}
 	

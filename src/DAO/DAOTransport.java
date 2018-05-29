@@ -1,7 +1,10 @@
 package DAO;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Vector;
 
+import metier.Livreur;
 import metier.Transport;
 
 public class DAOTransport extends DAO {
@@ -18,18 +21,37 @@ public class DAOTransport extends DAO {
 		super();
 	}
 
-	public Transport GetById(int id) {
+	public Transport GetById(int id)  throws SQLException {
 
 		Transport toReturn = null;
 		
-		// TODO A faire !
+		ResultSet varReturn;
+		varReturn = query( "SELECT * FROM transports WHERE id = " + Integer.toString(id) + ";");
 		
+		varReturn.next();
+		int id1 = varReturn.getInt(1);
+		String nom = varReturn.getString(2);
+		
+		toReturn = new Transport( id1, nom );
+		
+		varReturn.close();
 		return toReturn;
 	}
 
-	public Vector<Transport > GetAll() {
+	public Vector<Transport > GetAll()  throws SQLException {
 		Vector<Transport > toReturn = new Vector<Transport >(); 
-		// TODO A faire !
+		ResultSet varReturn;
+		varReturn = query( "SELECT * FROM transports;");
+		
+		while( varReturn.next())
+		{
+			int id1 = varReturn.getInt(1);
+			String nom = varReturn.getString(2);
+			
+			toReturn.add( new Transport( id1, nom ));
+		}
+		
+		varReturn.close();
 		return toReturn;
 	}
 

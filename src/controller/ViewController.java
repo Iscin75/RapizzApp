@@ -8,6 +8,11 @@ import view.Stats;
 import view.Menu;
 import view.Pizzas;
 import view.Livreurs;
+
+import java.util.Vector;
+
+import DAO.*;
+import metier.*;
 import view.Clients;
 import view.Commandes;
 
@@ -20,6 +25,30 @@ public class ViewController {
 
 	public static void main(String[] args) {
 		try{
+			
+			Vector<Commande> objs = DAOCommande.getThatDAO().GetAll();
+			for (Commande o : objs)
+			{
+				System.out.print( "Une " + o.pizza.nom + " de taille " + o.taille + " à " + o.prix + " pour " + o.client.prenom + " " + o.client.nom +".");
+				System.out.println("");
+				System.out.print("Elle avait pour ingrédients : ");
+				for(Ingredient p : o.pizza.ingredients)
+				{
+					System.out.println("");
+					System.out.print( "  - " + p.nom );
+				}
+				System.out.println("");
+				System.out.print("Cette pizza a été commandée le " + o.dateCommande.toString() + ". Le status est '" + o.livraison.etat + "'.");
+				if( o.livraison.etat == EtatLivraison.enCours) System.out.print(" La livraison est en cours! :)");
+				if( o.livraison.etat == EtatLivraison.terminée) {
+					System.out.print(" Vous l'avez donc reçu! :)");
+					System.out.println("");
+					System.out.print("Le livreur était " + o.livraison.livreur.nom + " " + o.livraison.livreur.prenom + ", son moyen de locomotion était un(e) " + o.livraison.transport.nom + ".");
+				}
+
+				System.out.println("");
+				System.out.println("");
+			}
 			drawNewView();
 
 			}
