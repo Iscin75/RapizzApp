@@ -41,8 +41,11 @@ public class DAOConnector {
     }
 	
 	public ResultSet query(String query) throws SQLException{
+		
 		statement = db.conn.createStatement();
+		
 		ResultSet res = statement.executeQuery(query);
+		
 		return res;
 	}
 
