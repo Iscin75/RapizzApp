@@ -15,7 +15,7 @@ public class DAO  {
 	}
 	
 	public ResultSet query(String query) throws SQLException{
-		System.out.print( query );
+		//System.out.print( query );
 		return connector.query(query);
 	}
 	

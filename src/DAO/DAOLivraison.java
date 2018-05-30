@@ -1,8 +1,10 @@
 package DAO;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Vector;
 
-import metier.Livraison;
+import metier.*;
 
 
 public class DAOLivraison extends DAO {
@@ -18,18 +20,41 @@ public class DAOLivraison extends DAO {
 		super();
 	}
 
-	public Livraison GetById(int id) {
+	public Livraison GetById(int id)  throws SQLException {
 
 		Livraison toReturn = null;
 		
-		// TODO A faire !
+		ResultSet varReturn;
+		varReturn = query( "SELECT * FROM livraisons WHERE id = " + Integer.toString(id) + ";");
 		
+		varReturn.next();
+		int id1 = varReturn.getInt(1);
+		Livreur livreur = DAOLivreur.getThatDAO().GetById(varReturn.getInt(2));
+		Transport transport = DAOTransport.getThatDAO().GetById(varReturn.getInt(4));
+		EtatLivraison etatLivraison = EtatLivraison.valueOf(varReturn.getString(5));
+		
+		toReturn = new Livraison( id1, livreur, transport, etatLivraison );
+		
+		varReturn.close();
 		return toReturn;
 	}
 
-	public Vector<Livraison> GetAll() {
+	public Vector<Livraison> GetAll()  throws SQLException {
 		Vector<Livraison> toReturn = new Vector<Livraison>(); 
-		// TODO A faire !
+		ResultSet varReturn;
+		varReturn = query( "SELECT * FROM livraisons;");
+		
+		while(varReturn.next())
+		{
+			int id1 = varReturn.getInt(1);
+			Livreur livreur = DAOLivreur.getThatDAO().GetById(varReturn.getInt(2));
+			Transport transport = DAOTransport.getThatDAO().GetById(varReturn.getInt(4));
+			EtatLivraison etatLivraison = EtatLivraison.valueOf(varReturn.getString(5));
+			
+			toReturn.add(new Livraison( id1, livreur, transport, etatLivraison ));
+		}
+		
+		varReturn.close();
 		return toReturn;
 	}
 	
