@@ -3,7 +3,7 @@ package metier;
 import java.util.Vector;
 
 public class Client {
-	public Client(int p_id, String p_nom, String p_prenom, String p_adresse, String p_ville, float p_solde, int p_nombreCommande) {
+	public Client(int p_id, String p_nom, String p_prenom, String p_adresse, String p_ville, float p_solde) {
 		super();
 
 		this.id = p_id;
@@ -12,7 +12,6 @@ public class Client {
 		this.adresse = p_adresse;
 		this.ville = p_ville;
 		this.solde = p_solde;
-		this.nombreCommande = p_nombreCommande;
 	}
 
 	public String nom;
@@ -21,6 +20,5 @@ public class Client {
 	public String ville;
 	public float solde;
 	public int id;
-	public int nombreCommande;
 	public Vector<Commande> Commandes;
 }

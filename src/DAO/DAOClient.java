@@ -27,14 +27,21 @@ public class DAOClient extends DAO {
 		
 		ResultSet varReturn = query( "SELECT * FROM clients WHERE id = " + id_str + ";");
         varReturn.next();
-		toReturn = new Client( 
-				varReturn.getInt(1),
-				varReturn.getString(2),
-				varReturn.getString(3),
-				varReturn.getString(4),
-				varReturn.getString(5),
-				varReturn.getFloat(6),
-				varReturn.getInt(7));
+        
+        int id1 = varReturn.getInt(1);
+    	String nom = varReturn.getString(2);
+    	String prenom = varReturn.getString(3);
+    	String adresse = varReturn.getString(4);
+    	String ville = varReturn.getString(5);
+    	float solde = varReturn.getFloat(6);
+    	
+		toReturn = new Client(
+				id1,
+				nom,
+				prenom,
+				adresse,
+				ville,
+				solde);
 		
 		//System.out.print("test");
 		varReturn.close();
@@ -53,7 +60,6 @@ public class DAOClient extends DAO {
         	String adresse = varReturn.getString(4);
         	String ville = varReturn.getString(5);
         	float solde = varReturn.getFloat(6);
-        	int nombreCommande = varReturn.getInt(7);
         	
 			toReturn.add (new Client(
 					id1,
@@ -61,8 +67,7 @@ public class DAOClient extends DAO {
 					prenom,
 					adresse,
 					ville,
-					solde,
-					nombreCommande));
+					solde));
         }
 		
 		varReturn.close();

@@ -1,5 +1,5 @@
 package metier;
 
 public enum EtatLivraison {
-	enCours, terminée, echec, autre 
+	enCours, terminée, retard, echec, autre 
 }
