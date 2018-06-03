@@ -12,7 +12,7 @@ public class DAOConnector {
 	public Statement statement;
 	public Connection conn;
 	public static DAOConnector db;
-	
+
 	private DAOConnector()
 	{
 		String url = "jdbc:mysql://159.180.243.29:3306/";

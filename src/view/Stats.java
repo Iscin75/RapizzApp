@@ -20,7 +20,6 @@ private static final long serialVersionUID = 1L;
 	JButton btnStatsLivreurs;
 	JButton btnStatsClients;
 	JButton btnStatsPizzas;
-
 	public Stats(MainFrame menu) {
 		
 		setBackground(Color.LIGHT_GRAY);

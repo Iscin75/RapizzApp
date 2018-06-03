@@ -29,7 +29,6 @@ public class ViewController {
 		catch (Exception e) {
 		 	e.printStackTrace();
 		}
-
 	}
 
 	public static void setAnDrawNewView(String pToDraw){
@@ -85,60 +84,56 @@ public class ViewController {
 		FA.corps();
 		
 		//Parametre de notre fenetre
-		FA.setTitle("Rapizz - Authentification");
+		FA.setTitle("Rapizz - Système automatisé de gestion de pizzeria");
 		FA.setVisible(true);
 	}
 	private static void MenuView(){
-		Menu menu = new Menu(FA);
+		Menu V_Menu = new Menu(FA);
 		Header menu_header = new Header("Menu Principal");
 		FA.remove(FA.getCorps());
 		FA.remove(FA.getHeader());
-		FA.setCorps(menu);
+		FA.setCorps(V_Menu);
 		FA.setHeader(menu_header);
 		FA.remake();
 	}
 	private static void ShowLivreursView(){
-		Livreurs reporting = new Livreurs(FA);
+		Livreurs V_Livreurs= new Livreurs(FA);
 		FA.remove(FA.getCorps());
 		FA.remove(FA.getHeader());
-		FA.setCorps(reporting);
+		FA.setCorps(V_Livreurs);
 		FA.setHeader(new Header("Consultation des livreurs"));
 		FA.remake();
 	}
 	private static void ShowClientsView(){
-		Clients reporting = new Clients(FA);
+		Clients V_Clients = new Clients(FA);
 		FA.remove(FA.getCorps());
 		FA.remove(FA.getHeader());
-		FA.setCorps(reporting);
+		FA.setCorps(V_Clients);
 		FA.setHeader(new Header("Consultation des clients"));
 		FA.remake();
 	}
 	private static void ShowStatsView(){
-		Stats visiteurs = new Stats(FA);
+		Stats V_Stats = new Stats(FA);
 		FA.remove(FA.getCorps());
 		FA.remove(FA.getHeader());
-		FA.setCorps(visiteurs);
+		FA.setCorps(V_Stats);
 		FA.setHeader(new Header("Consultation des statistiques"));
 		FA.remake();
 	}
 	private static void ShowPizzaView(){
-		Pizzas practiciens = new Pizzas(FA);
+		Pizzas V_Pizzas = new Pizzas(FA);
 		FA.remove(FA.getCorps());
 		FA.remove(FA.getHeader());
-		FA.setCorps(practiciens);
+		FA.setCorps(V_Pizzas);
 		FA.setHeader(new Header("Consultation des pizzas"));
 		FA.remake();
 	}
 	private static void ShowCommandesView(){
-		Commandes medicaments = new Commandes(FA);
+		Commandes V_Commandes = new Commandes(FA);
 		FA.remove(FA.getCorps());
 		FA.remove(FA.getHeader());
-		FA.setCorps(medicaments);
+		FA.setCorps(V_Commandes);
 		FA.setHeader(new Header("Consultation des commandes"));
 		FA.remake();
-	}
-
-
-	
-	
+	}	
 }
