@@ -42,9 +42,7 @@ public class Clients extends JPanel {
 	
 	public Vector<Client> allClients = null;
 
-	/**
-	 * Create the panel.
-	 */
+
 	public Clients(MainFrame menu) {
 		setBackground(Color.LIGHT_GRAY);
 		setBounds(100,100,720,423);
@@ -60,14 +58,20 @@ public class Clients extends JPanel {
 	
 	
 	// TODO Nb de Cmd
-	void OnSelectionShowInfos(int index)
+	void OnSelectionShowInfos(int index) 
 	{
 		String nomString = "Nom : " + allClients.get(index).nom;
 		String prenomString = "Prenom : " + allClients.get(index).prenom;
 		String adrString = "Adresse : " + allClients.get(index).adresse;
 		String soldeString = "Solde : " + allClients.get(index).solde + "€";
 		String villeString = "Ville : " + allClients.get(index).ville;
-		String nbComString = "Nombre de commandes : TODO"; 
+		String nbComString = "";
+		try {
+			nbComString = "Nombre de commandes : "  + Integer.toString(DAOClient.getThatDAO().GetNbOrderById(index+1));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		lblNom.setText(nomString);
 		lblPrenom.setText(prenomString);
 		lblAdresse.setText(adrString);
