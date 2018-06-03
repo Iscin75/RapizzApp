@@ -48,6 +48,23 @@ public class DAOClient extends DAO {
 		return toReturn;
 	}
 
+	public int GetNbOrderById( int id ) throws SQLException {
+
+		int toReturn = 0;
+		
+		String id_str = Integer.toString(id);
+		
+		ResultSet varReturn = query( "SELECT count(co.client) FROM clients as c, commandes as co WHERE c.id = co.client AND co.client = " + id_str + ";");
+        varReturn.next();
+        
+        int nb_commande = varReturn.getInt(1);
+    	
+		toReturn = nb_commande; 
+		
+		varReturn.close();
+		return toReturn;
+	}
+	
 	public Vector<Client> GetAll() throws SQLException {
 		Vector<Client> toReturn = new Vector<Client>(); 
 		
