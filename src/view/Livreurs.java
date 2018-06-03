@@ -8,15 +8,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Vector;
 
-import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTable;
-import javax.swing.GroupLayout.Alignment;
+
 
 import controller.ViewController;
-import javax.swing.LayoutStyle.ComponentPlacement;
 
 import DAO.DAOLivreur;
 import DAO.DAOTransport;
@@ -68,9 +66,6 @@ public class Livreurs extends JPanel {
 		btnReturn.setFocusPainted(false);
 		
 	}
-	
-
-		
 	
 	void OnSelectionShowInfos(int index)
 	{
@@ -193,6 +188,7 @@ public class Livreurs extends JPanel {
 	        ) {
 
 				private static final long serialVersionUID = 1L;
+				@SuppressWarnings("rawtypes")
 				Class[] types = new Class [] {
 	                java.lang.String.class, java.lang.String.class, java.lang.Float.class
 	            };
@@ -200,7 +196,7 @@ public class Livreurs extends JPanel {
 	                false, false, false
 	            };
 
-	            public Class getColumnClass(int columnIndex) {
+	            public Class<?> getColumnClass(int columnIndex) {
 	                return types [columnIndex];
 	            }
 

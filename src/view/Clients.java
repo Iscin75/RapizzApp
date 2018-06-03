@@ -14,14 +14,11 @@ import javax.swing.JPanel;
 
 import controller.ViewController;
 import javax.swing.JTable;
-import javax.swing.ListSelectionModel;
+
 
 import DAO.DAOClient;
 import metier.Client;
 
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.GroupLayout;
-import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -178,14 +175,14 @@ public class Clients extends JPanel {
 				 * 
 				 */
 				private static final long serialVersionUID = 1L;
+				@SuppressWarnings("rawtypes")
 				Class[] types = new Class [] {
 	                java.lang.String.class, java.lang.String.class, java.lang.Float.class
 	            };
 	            boolean[] canEdit = new boolean [] {
 	                false, false, false
 	            };
-
-	            public Class getColumnClass(int columnIndex) {
+	            public Class<?> getColumnClass(int columnIndex) {
 	                return types [columnIndex];
 	            }
 

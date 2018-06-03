@@ -6,7 +6,7 @@ import metier.*;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Date;
+
 
 public class DAOCommande extends DAO {
 	

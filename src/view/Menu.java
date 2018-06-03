@@ -13,13 +13,13 @@ import javax.swing.JLabel;
 import view.MainFrame;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.Icon;
+
 public class Menu extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private String purl;
 	
-	/** Liste des différents noms de boutons du menu == use case (obviously) **/
+	/** Liste des différents noms de boutons du menu == use case **/
 	String[] listName = {"Clients","Livreurs","Commandes","Stats","Pizzas"};
 	
 	

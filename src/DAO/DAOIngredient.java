@@ -4,11 +4,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
 
-import metier.Client;
-import metier.Commande;
+
 import metier.Ingredient;
-import metier.Livraison;
-import metier.Pizza;
 
 public class DAOIngredient extends DAO {
 

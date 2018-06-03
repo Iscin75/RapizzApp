@@ -4,10 +4,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
 
-import metier.EtatLivraison;
-import metier.Livraison;
+
 import metier.Livreur;
-import metier.Transport;
 
 public class DAOLivreur extends DAO {
 	

@@ -8,7 +8,6 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.Vector;
 
-import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -16,7 +15,6 @@ import javax.swing.JTable;
 
 import DAO.DAOCommande;
 
-import javax.swing.GroupLayout.Alignment;
 
 import controller.ViewController;
 import metier.Commande;
@@ -194,6 +192,7 @@ public class Commandes extends JPanel {
 				 * 
 				 */
 				private static final long serialVersionUID = 1L;
+				@SuppressWarnings("rawtypes")
 				Class[] types = new Class [] {
 	                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Float.class
 	            };
@@ -201,7 +200,7 @@ public class Commandes extends JPanel {
 	                false, false, false, false
 	            };
 
-	            public Class getColumnClass(int columnIndex) {
+	            public Class<?> getColumnClass(int columnIndex) {
 	                return types [columnIndex];
 	            }
 

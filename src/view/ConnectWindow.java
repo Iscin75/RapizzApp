@@ -23,6 +23,7 @@ public class ConnectWindow extends JPanel {
 	private static final long serialVersionUID = -7305664800426191162L;
 	private JTextField ndc_entry;
 	private JPasswordField mdp_entry;
+	@SuppressWarnings("unused")
 	private MainFrame FA;
 	private JPanel auth_panel = new JPanel();
 	

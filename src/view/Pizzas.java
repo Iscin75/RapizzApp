@@ -1,7 +1,7 @@
 package view;
 import javax.swing.JButton;
 import javax.swing.JPanel;
-import javax.swing.JTable;
+
 
 import controller.ViewController;
 import metier.Pizza;
@@ -11,8 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
-import java.util.HashMap;
-import java.util.Map;
+
 import java.util.Vector;
 
 import javax.swing.JTree;
@@ -23,7 +22,7 @@ import DAO.DAOPizza;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.JLabel;
 import java.awt.Font;
-import java.awt.Point;
+
 
 import javax.swing.SwingConstants;
 import javax.swing.event.TreeSelectionListener;

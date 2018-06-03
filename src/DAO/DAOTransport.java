@@ -4,7 +4,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
 
-import metier.Livreur;
 import metier.Transport;
 
 public class DAOTransport extends DAO {
