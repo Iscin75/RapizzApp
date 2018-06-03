@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Commande {
 	static Commande me;
-	public Commande(int id, Client client, Pizza pizza, int taille, float tarif, Date date, Livraison livraison) {
+	public Commande(int id, Client client, Pizza pizza, String taille, float tarif, Date date, Livraison livraison) {
 		super();
 		this.id = id;
 		this.prix = tarif;
@@ -17,7 +17,7 @@ public class Commande {
 	}
 	
 	public int id;
-	public int taille;
+	public String taille;
 	public float prix;
 	public Date dateCommande;
 	public Client client;

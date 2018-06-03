@@ -21,7 +21,6 @@ public class DAOCommande extends DAO {
 		
 		super();
 	}
-	
 
 	public Commande GetById(int id) throws SQLException {
 
@@ -34,7 +33,7 @@ public class DAOCommande extends DAO {
 		int id1 = varReturn.getInt(1);
 		Client client = DAOClient.getThatDAO().GetById( varReturn.getInt(2) ); 
 		Pizza pizza = DAOPizza.getThatDAO().GetById( varReturn.getInt(3) );
-		int taille = varReturn.getInt(4);
+		String taille = GetPizzaFormat(varReturn.getInt(4));
 		float tarif = varReturn.getFloat(5);
 		java.sql.Date date = varReturn.getDate(6);
 		Livraison livraison = DAOLivraison.getThatDAO().GetById( varReturn.getInt(7) );
@@ -54,7 +53,7 @@ public class DAOCommande extends DAO {
 			int id = varReturn.getInt(1);
 			Client client = DAOClient.getThatDAO().GetById( varReturn.getInt(2) ); 
 			Pizza pizza = DAOPizza.getThatDAO().GetById( varReturn.getInt(3) );
-			int taille = varReturn.getInt(4);
+			String taille = GetPizzaFormat(varReturn.getInt(4));
 			float tarif = varReturn.getFloat(5);
 			java.sql.Date date = varReturn.getDate(6);
 			Livraison livraison = DAOLivraison.getThatDAO().GetById( varReturn.getInt(7) );
@@ -63,6 +62,21 @@ public class DAOCommande extends DAO {
 		}
 		
 		return allCmd;
+	}
+	
+	public String GetPizzaFormat(int id) throws SQLException
+	{
+		String format = "";
+		
+		ResultSet varReturn = query("SELECT nom FROM formats_pizzas WHERE id= " + id);;
+		
+		while(varReturn.next())
+		{
+			format = varReturn.getString(1);
+		}
+		
+		
+		return format;
 	}
 	
 	

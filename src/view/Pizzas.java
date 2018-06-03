@@ -48,7 +48,6 @@ public class Pizzas extends JPanel {
 	JLabel lblPrixOgresse = new JLabel("");
 	Vector<Pizza> allPizzas = null;
 	int[] startIndex = new int[1];
-	Map<DefaultMutableTreeNode,Integer> nodeOrder = new HashMap<DefaultMutableTreeNode,Integer>() ;
 	
 
 	public Pizzas(MainFrame menu) {

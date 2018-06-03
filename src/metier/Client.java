@@ -13,7 +13,6 @@ public class Client {
 		this.ville = p_ville;
 		this.solde = p_solde;
 	}
-
 	public String nom;
 	public String prenom;
 	public String adresse;

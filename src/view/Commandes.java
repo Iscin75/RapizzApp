@@ -35,16 +35,14 @@ public class Commandes extends JPanel {
 	private JLabel lblLivreur;
 	private JLabel lblTarif;
 	private JLabel lblDateCommande;
-	private JLabel lblDateLivraison;
+	private JLabel lblEtatCommande;
 	private JButton btnReturn;
 	private JLabel lblPizzaChoisie;
 	private JLabel lblTaille;
 	
 	public Vector<Commande> allCmds = null;
 
-	/**
-	 * Create the panel.
-	 */
+
 	public Commandes(MainFrame menu) {
 		
 			setBackground(Color.LIGHT_GRAY);
@@ -56,15 +54,6 @@ public class Commandes extends JPanel {
 			OnSelectionShowInfos(0);
 	}
 	
-	// TODO Remplir la table "CmdTable" au chargement du panel (Colonnes : "N° Commande", "Client", "Date", "Tarif")
-	void OnLoadFillCmdTable()
-	{
-			
-	}
-	
-	// TODO Afficher toutes les infos d'une commande lorsque la ligne dans "CmdTable est selectionnée en s'aidant des différents labels 
-	// (client (nom + prenom), livreur(nom + prenom), tarifCmd, dateCmd, dateLivraison, pizza choisie et taille)
-	// Par défaut afficher la cmd à l'index 0
 	void OnSelectionShowInfos(int index)
 	{
 		String clientStr = "Client : " + allCmds.get(index).client.nom + " "
@@ -75,14 +64,14 @@ public class Commandes extends JPanel {
 		
 		String tarifStr = "Tarif : " + allCmds.get(index).prix;
 		String dateCmdStr = "Date de commande : " + allCmds.get(index).dateCommande;
-		//String dateLivStr = "Date de livraison : " + allCmds.get(index).livraison.livreur.
+
 		String pizzaStr = "Pizza choisie : " + allCmds.get(index).pizza.nom;
 		String tailleStr = "Taille : " + allCmds.get(index).taille;
 		lblClient.setText(clientStr);
 		lblLivreur.setText(livreurStr);
 		lblTarif.setText(tarifStr);
 		lblDateCommande.setText(dateCmdStr);
-		//lblDateLivraison.setText(dateLivStr);
+		lblEtatCommande.setText("Etat de la livraison : " + allCmds.get(index).livraison.etat);
 		lblPizzaChoisie.setText(pizzaStr);
 		lblTaille.setText(tailleStr);
 	}
@@ -111,30 +100,30 @@ public class Commandes extends JPanel {
 	        lblInformationsComplmentaires.setFont(new Font("Tahoma", Font.PLAIN, 24));
 	        
 	        lblClient = new JLabel("Client :");
-	        lblClient.setBounds(10, 293, 151, 17);
+	        lblClient.setBounds(10, 293, 292, 17);
 	        lblClient.setFont(new Font("Tahoma", Font.PLAIN, 14));
 	        
 	        lblLivreur = new JLabel("Livreur :");
-	        lblLivreur.setBounds(175, 293, 147, 17);
+	        lblLivreur.setBounds(334, 293, 361, 17);
 	        lblLivreur.setFont(new Font("Tahoma", Font.PLAIN, 14));
 	        
 	        lblTarif = new JLabel("Tarif :");
-	        lblTarif.setBounds(336, 293, 257, 17);
+	        lblTarif.setBounds(495, 293, 200, 17);
 	        lblTarif.setFont(new Font("Tahoma", Font.PLAIN, 14));
 	        
 	        lblDateCommande = new JLabel("Date de commande :");
 	        lblDateCommande.setBounds(10, 328, 312, 17);
 	        lblDateCommande.setFont(new Font("Tahoma", Font.PLAIN, 14));
 	        
-	        lblDateLivraison = new JLabel("Date de livraison :");
-	        lblDateLivraison.setBounds(336, 328, 257, 17);
-	        lblDateLivraison.setFont(new Font("Tahoma", Font.PLAIN, 14));
+	        lblEtatCommande = new JLabel("Etat de la commande :");
+	        lblEtatCommande.setBounds(336, 328, 257, 17);
+	        lblEtatCommande.setFont(new Font("Tahoma", Font.PLAIN, 14));
 	        setLayout(null);
 	        add(btnReturn);
 	        add(jScrollPane1);
 	        add(lblInformationsComplmentaires);
 	        add(lblClient);
-	        add(lblDateLivraison);
+	        add(lblEtatCommande);
 	        add(lblLivreur);
 	        add(lblTarif);
 	        add(lblDateCommande);
@@ -153,7 +142,7 @@ public class Commandes extends JPanel {
 	        add(jScrollPane1);
 	        add(lblInformationsComplmentaires);
 	        add(lblClient);
-	        add(lblDateLivraison);
+	        add(lblEtatCommande);
 	        add(lblLivreur);
 	        add(lblTarif);
 	        add(lblDateCommande);

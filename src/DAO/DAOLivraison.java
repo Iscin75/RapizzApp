@@ -19,7 +19,6 @@ public class DAOLivraison extends DAO {
 	public DAOLivraison() {
 		super();
 	}
-
 	public Livraison GetById(int id)  throws SQLException {
 
 		Livraison toReturn = null;
