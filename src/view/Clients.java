@@ -42,7 +42,6 @@ public class Clients extends JPanel {
 	
 	public Vector<Client> allClients = null;
 
-
 	public Clients(MainFrame menu) {
 		setBackground(Color.LIGHT_GRAY);
 		setBounds(100,100,720,423);
@@ -57,7 +56,6 @@ public class Clients extends JPanel {
 	}
 	
 	
-	// TODO Nb de Cmd
 	void OnSelectionShowInfos(int index) 
 	{
 		String nomString = "Nom : " + allClients.get(index).nom;
