@@ -75,7 +75,7 @@ public class DAOCommande extends DAO {
 			format = varReturn.getString(1);
 		}
 		
-		
+		varReturn.close();
 		return format;
 	}
 	

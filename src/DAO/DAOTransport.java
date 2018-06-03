@@ -20,7 +20,7 @@ public class DAOTransport extends DAO {
 
 		super();
 	}
-
+	
 	public Transport GetById(int id)  throws SQLException {
 
 		Transport toReturn = null;

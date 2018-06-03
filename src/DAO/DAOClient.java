@@ -20,7 +20,7 @@ public class DAOClient extends DAO {
 	}
 
 	public Client GetById(int id) throws SQLException {
-		
+	
 		Client toReturn = null;
 		
 		String id_str = Integer.toString(id);
