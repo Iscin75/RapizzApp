@@ -62,8 +62,6 @@ public class DAOClient extends DAO {
 	    	
 			toReturn = nb_commande; 
         }
-        else
-        	toReturn = 0;
         
 		varReturn.close();
 		return toReturn;
