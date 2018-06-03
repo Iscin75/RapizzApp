@@ -28,7 +28,7 @@ public class DAOLivreur extends DAO {
 		
 		ResultSet varReturn;
 		varReturn = query( "SELECT * FROM livreur WHERE id = " + Integer.toString(id) + ";");
-		
+	
 		varReturn.next();
 		int id1 = varReturn.getInt(1);
 		String nom = varReturn.getString(2);
@@ -112,8 +112,10 @@ public class DAOLivreur extends DAO {
 		
 		ResultSet varReturn = query( "SELECT COUNT(li.statut) FROM livreur as l, livraisons as li WHERE li.livreur = l.id AND li.statut = 'retard' AND li.livreur = " + id_str + ";");
 		
-		if( varReturn.next())
+		varReturn.next();
+		if( varReturn.isBeforeFirst())
 		{
+			
 	        int nb_retard = varReturn.getInt(1);
 	    	
 			toReturn = nb_retard; 

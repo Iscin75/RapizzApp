@@ -19,6 +19,8 @@ import controller.ViewController;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 import DAO.DAOLivreur;
+import DAO.DAOTransport;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
@@ -69,23 +71,42 @@ public class Livreurs extends JPanel {
 	
 
 		
-	// TODO Afficher toutes les infos d'un livreur lorsque la ligne dans "LivreursTable est selectionnée en s'aidant des différents labels 
-	// (nom + prenom livreur + vehicule le plus utilisé + nb total de livraisons effectuées + nb de commandes en retard + argent total rapporté)
-	// Par défaut afficher la cmd à l'index 0
+	
 	void OnSelectionShowInfos(int index)
 	{
 		String nomString = "Nom : " + allLivreurs.get(index).nom;
 		String prenomString = "Prenom : " + allLivreurs.get(index).prenom;
-		//String argentString = "Argent total rapporté : " + allLivreurs.get(index).
-		//String vehiculeString = "Véhicule préféré : " + allLivreurs.get(index).
-		//String nbLivraisonString = "Nombre de livraisons : " + allLivreurs.get(index).
-		//String nbRetardString = "Nombre de retards : " + allLivreurs.get(index).
+		String nbLivraisonString = "";
+		String argentString = "";
+		String vehiculeString = "";
+		String nbRetardString = "";
+		
+		int vehicleID = 0;
+		try {
+			nbLivraisonString = "Nombre de livraisons : " + Integer.toString(DAOLivreur.getThatDAO().GetNbDeliveryById(index + 1));
+			argentString = "Argent total rapporté : " + String.valueOf(DAOLivreur.getThatDAO().GetMoneyEarnedById(index + 1));
+			vehicleID = DAOLivreur.getThatDAO().GetFavoriteVehiculeById(index + 1);
+			if(vehicleID != 0)
+			{
+				vehiculeString = "Véhicule préféré : " + DAOTransport.getThatDAO().GetById(vehicleID).nom;
+			}
+			else
+			{
+				vehiculeString = "Véhicule préféré : Aucun" ;
+			}
+		
+			nbRetardString = "Nombre de retards : " + Integer.toString(DAOLivreur.getThatDAO().GetNbLateDeliveryById(index + 1));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		lblNom.setText(nomString);
 		lblPrenom.setText(prenomString);
-		//lblArgentTotalRapport.setText(argentString);
-		//lblBestVehicle.setText(vehiculeString);
-		//lblNbLivraisons.setText(nbLivraisonString);
-		//lblNombreDeRetards.setText(nbRetardString);
+		lblArgentTotalRapport.setText(argentString);
+		lblBestVehicle.setText(vehiculeString);
+		lblNbLivraisons.setText(nbLivraisonString);
+		lblNombreDeRetards.setText(nbRetardString);
 	}
 	  private void DisplayLivreurInfos() {
 
@@ -156,7 +177,12 @@ public class Livreurs extends JPanel {
 	        for (int i = 0; i < allLivreurs.size(); i++) {
 	        	livreurObject[i][0] = allLivreurs.get(i).nom;
 	        	livreurObject[i][1] = allLivreurs.get(i).prenom;
-	        	//livreurObject[i][2] = allLivreurs.get(i)
+	        	try {
+					livreurObject[i][2] = DAOLivreur.getThatDAO().GetMoneyEarnedById(allLivreurs.get(i).id);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 	        }
 
 	        LivreursTable.setModel(new javax.swing.table.DefaultTableModel(
