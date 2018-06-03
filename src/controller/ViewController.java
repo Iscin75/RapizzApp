@@ -26,7 +26,7 @@ public class ViewController {
 	public static void main(String[] args) {
 		try{
 			
-			Vector<Commande> objs = DAOCommande.getThatDAO().GetAll();
+			/*Vector<Commande> objs = DAOCommande.getThatDAO().GetAll();
 			for (Commande o : objs)
 			{
 				System.out.print( "Une " + o.pizza.nom + " de taille " + o.taille + " à " + o.prix + " pour " + o.client.prenom + " " + o.client.nom +".");
@@ -48,7 +48,12 @@ public class ViewController {
 
 				System.out.println("");
 				System.out.println("");
-			}
+			}*/
+			
+			int nbCom = DAOLivreur.getThatDAO().GetFavoriteVehiculeById(4);
+			System.out.print(nbCom);
+			System.out.println("");
+				
 			drawNewView();
 
 			}

@@ -61,6 +61,49 @@ public class DAOLivreur extends DAO {
 		return toReturn;
 	}
 	
+	public float GetMoneyEarnedById( int id ) throws SQLException {
+			
+		float toReturn = 0;
+		
+		String id_str = Integer.toString(id);
+		
+		ResultSet varReturn = query( "SELECT sum(co.tarif) FROM livreur as l, livraisons as li, commandes as co WHERE li.livreur = l.id AND li.id = co.livraison AND li.statut = 'terminée' AND li.livreur = " + id_str + ";");
+        
+		if( varReturn.next())
+		{
+	        float sum_money = varReturn.getInt(1);
+	    	
+			toReturn = sum_money; 
+		}
+		
+		varReturn.close();
+		return toReturn;
+	}
+	
+	public int GetFavoriteVehiculeById( int id ) throws SQLException {
+		
+		int toReturn = 0;
+		int i = 0;
+		int[][] valReturned = new int[3][2]; 
+		
+		String id_str = Integer.toString(id);
+		
+		ResultSet varReturn = query( "SELECT t.id, count(t.nom) FROM livreur as l, transports as t, livraisons as li WHERE l.id = li.livreur AND li.transport = t.id AND li.livreur = " + id_str + " GROUP BY t.nom,l.nom ORDER BY count(t.nom) DESC;");
+		
+		while( varReturn.next() )
+		{
+			valReturned[i][0] = varReturn.getInt(1);
+			valReturned[i][1] = varReturn.getInt(2);
+			i++;
+		}
+		
+		if( valReturned[0][1] != valReturned[1][1])
+			toReturn = valReturned[0][0];
+		
+		return toReturn;
+		
+	}
+	
 	public int GetNbLateDeliveryById( int id ) throws SQLException {
 
 		int toReturn = 0;
@@ -75,16 +118,16 @@ public class DAOLivreur extends DAO {
 	    	
 			toReturn = nb_retard; 
 		}
-		else
-			toReturn = 0;
 		
 		varReturn.close();
 		return toReturn;
 	}
 
 	public Vector<Livreur> GetAll()  throws SQLException {
+		
 		Vector<Livreur> toReturn = new Vector<Livreur>(); 
 		ResultSet varReturn;
+		
 		varReturn = query( "SELECT * FROM livreur;");
 		
 		while( varReturn.next())
