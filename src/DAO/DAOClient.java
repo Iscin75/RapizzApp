@@ -55,12 +55,16 @@ public class DAOClient extends DAO {
 		String id_str = Integer.toString(id);
 		
 		ResultSet varReturn = query( "SELECT count(co.client) FROM clients as c, commandes as co WHERE c.id = co.client AND co.client = " + id_str + ";");
-        varReturn.next();
         
-        int nb_commande = varReturn.getInt(1);
-    	
-		toReturn = nb_commande; 
-		
+		if( varReturn.next() )
+        {
+	        int nb_commande = varReturn.getInt(1);
+	    	
+			toReturn = nb_commande; 
+        }
+        else
+        	toReturn = 0;
+        
 		varReturn.close();
 		return toReturn;
 	}

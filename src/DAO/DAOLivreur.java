@@ -39,6 +39,48 @@ public class DAOLivreur extends DAO {
 		varReturn.close();
 		return toReturn;
 	}
+	
+	public int GetNbDeliveryById( int id ) throws SQLException {
+		
+		int toReturn = 0;
+		
+		String id_str = Integer.toString(id);
+		
+		ResultSet varReturn = query( "SELECT COUNT(li.statut) FROM livreur as l, livraisons as li WHERE li.livreur = l.id AND li.livreur = " + id_str + ";");
+        
+		if( varReturn.next())
+		{
+	        int nb_retard = varReturn.getInt(1);
+	    	
+			toReturn = nb_retard; 
+		}
+		else
+			toReturn = 0;
+		
+		varReturn.close();
+		return toReturn;
+	}
+	
+	public int GetNbLateDeliveryById( int id ) throws SQLException {
+
+		int toReturn = 0;
+		
+		String id_str = Integer.toString(id);
+		
+		ResultSet varReturn = query( "SELECT COUNT(li.statut) FROM livreur as l, livraisons as li WHERE li.livreur = l.id AND li.statut = 'retard' AND li.livreur = " + id_str + ";");
+		
+		if( varReturn.next())
+		{
+	        int nb_retard = varReturn.getInt(1);
+	    	
+			toReturn = nb_retard; 
+		}
+		else
+			toReturn = 0;
+		
+		varReturn.close();
+		return toReturn;
+	}
 
 	public Vector<Livreur> GetAll()  throws SQLException {
 		Vector<Livreur> toReturn = new Vector<Livreur>(); 
