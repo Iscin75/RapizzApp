@@ -33,6 +33,7 @@ public class Pizzas extends JPanel {
 		setBounds(100,100,720,423);
 		CreatePizzaTree();
 		DisplayPizzaInfos();
+		OnSelectionShowPizzaInfos(0);
 		Button_Return();
 			
 	}
@@ -52,15 +53,11 @@ public class Pizzas extends JPanel {
 		
 	}
 
-	// TODO remplir les nodes du tree avec le nom de chaque pizza (exemple dans CreatePizzaTree) 
-	void OnLoadFillJtree()
-	{
-		
-	}
+
 	
 	//TODO Au clic sur un element du Jtree afficher les caract de la pizza dans les labels correspondants (nom + ingrédients + tarif naine/humaine/ogresse)
 	// Par défault choisir la pizza 0
-	void OnSelectionShowPizzaInfos()
+	void OnSelectionShowPizzaInfos(int index)
 	{
 		
 	}

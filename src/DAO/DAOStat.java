@@ -20,6 +20,8 @@ public class DAOStat extends DAO {
 	}
 	
 
+
+	
 	public Vector<Client> GetCustomersByNb_Orders() throws SQLException {
 		
 		//Clients par ordre de nombre de commandes (sont comptés seulement ceux avec au moins 1 commande)
