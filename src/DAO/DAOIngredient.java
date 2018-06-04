@@ -29,11 +29,13 @@ public class DAOIngredient extends DAO {
 		
 		ResultSet varReturn = query( "SELECT * FROM ingredients WHERE id = "+ id_str + ";" );
 		
-		varReturn.next();
-		int id1 = varReturn.getInt(1);
-		String nom = varReturn.getString(2);
-			
-		toReturn = new Ingredient( id1, nom);
+		if( varReturn.next() )
+		{
+			int id1 = varReturn.getInt(1);
+			String nom = varReturn.getString(2);
+				
+			toReturn = new Ingredient( id1, nom);
+		}
 		
 		varReturn.close();
 		return toReturn;
@@ -43,6 +45,7 @@ public class DAOIngredient extends DAO {
 		Vector<Ingredient> Ingredients = new Vector<Ingredient>();
 		ResultSet varReturn;
 		varReturn = query( "SELECT * FROM ingredients;");
+		
 		while( varReturn.next() )
 		{
 			int id1 = varReturn.getInt( 1 );
@@ -60,6 +63,7 @@ public class DAOIngredient extends DAO {
 		Vector<Ingredient> Ingredients = new Vector<Ingredient>();
 		ResultSet varReturn;
 		varReturn = query( "SELECT I.* FROM ingredients as I, assoc_pizzas_ingredients as A, pizzas as P WHERE I.id = A.ingredient and A.pizza = P.id and P.id = " + Integer.toString(id) + ";");
+		
 		while( varReturn.next() )
 		{
 			int id1 = varReturn.getInt( 1 );

@@ -27,11 +27,13 @@ public class DAOTransport extends DAO {
 		ResultSet varReturn;
 		varReturn = query( "SELECT * FROM transports WHERE id = " + Integer.toString(id) + ";");
 		
-		varReturn.next();
-		int id1 = varReturn.getInt(1);
-		String nom = varReturn.getString(2);
-		
-		toReturn = new Transport( id1, nom );
+		if( varReturn.next() )
+		{
+			int id1 = varReturn.getInt(1);
+			String nom = varReturn.getString(2);
+			
+			toReturn = new Transport( id1, nom );
+		}
 		
 		varReturn.close();
 		return toReturn;

@@ -27,12 +27,14 @@ public class DAOLivreur extends DAO {
 		ResultSet varReturn;
 		varReturn = query( "SELECT * FROM livreur WHERE id = " + Integer.toString(id) + ";");
 	
-		varReturn.next();
-		int id1 = varReturn.getInt(1);
-		String nom = varReturn.getString(2);
-		String prenom = varReturn.getString(3);
-		
-		toReturn = new Livreur( id1, nom, prenom );
+		if( varReturn.next() )
+		{
+			int id1 = varReturn.getInt(1);
+			String nom = varReturn.getString(2);
+			String prenom = varReturn.getString(3);
+			
+			toReturn = new Livreur( id1, nom, prenom );
+		}
 		
 		varReturn.close();
 		return toReturn;
@@ -52,8 +54,6 @@ public class DAOLivreur extends DAO {
 	    	
 			toReturn = nb_retard; 
 		}
-		else
-			toReturn = 0;
 		
 		varReturn.close();
 		return toReturn;
@@ -113,7 +113,6 @@ public class DAOLivreur extends DAO {
 		varReturn.next();
 		if( varReturn.isBeforeFirst())
 		{
-			
 	        int nb_retard = varReturn.getInt(1);
 	    	
 			toReturn = nb_retard; 

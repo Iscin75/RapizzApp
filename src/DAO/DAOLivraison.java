@@ -26,13 +26,15 @@ public class DAOLivraison extends DAO {
 		ResultSet varReturn;
 		varReturn = query( "SELECT * FROM livraisons WHERE id = " + Integer.toString(id) + ";");
 		
-		varReturn.next();
-		int id1 = varReturn.getInt(1);
-		Livreur livreur = DAOLivreur.getThatDAO().GetById(varReturn.getInt(2));
-		Transport transport = DAOTransport.getThatDAO().GetById(varReturn.getInt(4));
-		EtatLivraison etatLivraison = EtatLivraison.valueOf(varReturn.getString(5));
-		
-		toReturn = new Livraison( id1, livreur, transport, etatLivraison );
+		if( varReturn.next() )
+		{
+			int id1 = varReturn.getInt(1);
+			Livreur livreur = DAOLivreur.getThatDAO().GetById(varReturn.getInt(2));
+			Transport transport = DAOTransport.getThatDAO().GetById(varReturn.getInt(4));
+			EtatLivraison etatLivraison = EtatLivraison.valueOf(varReturn.getString(5));
+			
+			toReturn = new Livraison( id1, livreur, transport, etatLivraison );
+		}
 		
 		varReturn.close();
 		return toReturn;

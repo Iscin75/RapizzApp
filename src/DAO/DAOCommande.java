@@ -29,16 +29,18 @@ public class DAOCommande extends DAO {
 		
 		ResultSet varReturn = query( "SELECT * FROM commandes WHERE id = "+ id_str + ";" );
 		
-		varReturn.next();
-		int id1 = varReturn.getInt(1);
-		Client client = DAOClient.getThatDAO().GetById( varReturn.getInt(2) ); 
-		Pizza pizza = DAOPizza.getThatDAO().GetById( varReturn.getInt(3) );
-		String taille = GetPizzaFormat(varReturn.getInt(4));
-		float tarif = varReturn.getFloat(5);
-		java.sql.Date date = varReturn.getDate(6);
-		Livraison livraison = DAOLivraison.getThatDAO().GetById( varReturn.getInt(7) );
-			
-		toReturn = new Commande(id1, client, pizza, taille, tarif, date, livraison);
+		if( varReturn.next() )
+		{
+			int id1 = varReturn.getInt(1);
+			Client client = DAOClient.getThatDAO().GetById( varReturn.getInt(2) ); 
+			Pizza pizza = DAOPizza.getThatDAO().GetById( varReturn.getInt(3) );
+			String taille = GetPizzaFormat(varReturn.getInt(4));
+			float tarif = varReturn.getFloat(5);
+			java.sql.Date date = varReturn.getDate(6);
+			Livraison livraison = DAOLivraison.getThatDAO().GetById( varReturn.getInt(7) );
+				
+			toReturn = new Commande(id1, client, pizza, taille, tarif, date, livraison);
+		}
 		
 		varReturn.close();
 		return toReturn;
@@ -50,11 +52,12 @@ public class DAOCommande extends DAO {
 		
 		ResultSet varReturn = query( "SELECT taille FROM commandes GROUP BY taille ORDER BY count(taille) DESC limit 1;" );
 		
-		varReturn.next();
-		int id1 = varReturn.getInt(1);
-		
-		toReturn = id1;
-		
+		if( varReturn.next() )
+		{
+			int id1 = varReturn.getInt(1);
+			
+			toReturn = id1;
+		}
 		varReturn.close();
 		return toReturn;
 	}

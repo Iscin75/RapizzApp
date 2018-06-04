@@ -27,14 +27,16 @@ public class DAOPizza extends DAO{
 		ResultSet varReturn;
 		varReturn = query( "SELECT * FROM pizzas WHERE id = " + Integer.toString(id) + ";");
 		
-		varReturn.next();
-		int id1 = varReturn.getInt(1);
-		String nom = varReturn.getString(2);
-		Vector<Ingredient> Ingredients  = new Vector<Ingredient>();
-		Ingredients = DAOIngredient.getThatDAO().GetAllForPizza(id1);
-		float price = varReturn.getFloat(3);
-		
-		toReturn = new Pizza( id1, nom, Ingredients, price );
+		if( varReturn.next() )
+		{
+			int id1 = varReturn.getInt(1);
+			String nom = varReturn.getString(2);
+			Vector<Ingredient> Ingredients  = new Vector<Ingredient>();
+			Ingredients = DAOIngredient.getThatDAO().GetAllForPizza(id1);
+			float price = varReturn.getFloat(3);
+			
+			toReturn = new Pizza( id1, nom, Ingredients, price );
+		}
 		
 		varReturn.close();
 		return toReturn;
@@ -43,6 +45,7 @@ public class DAOPizza extends DAO{
 	public Vector<Pizza> GetAll()  throws SQLException {
 		Vector <Pizza> toReturn = new Vector<Pizza>();
 		ResultSet varReturn = query("SELECT * FROM pizzas;");
+		
 		while( varReturn.next() ) {
 			int id1 = varReturn.getInt(1);
 			String nom = varReturn.getString(2);
