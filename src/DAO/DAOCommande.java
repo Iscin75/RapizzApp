@@ -44,6 +44,21 @@ public class DAOCommande extends DAO {
 		return toReturn;
 	}
 
+	public int GetMostFamousSize() throws SQLException {
+
+		int toReturn  = 0;
+		
+		ResultSet varReturn = query( "SELECT taille FROM commandes GROUP BY taille ORDER BY count(taille) DESC limit 1;" );
+		
+		varReturn.next();
+		int id1 = varReturn.getInt(1);
+		
+		toReturn = id1;
+		
+		varReturn.close();
+		return toReturn;
+	}
+	
 	public Vector<Commande> GetAll() throws SQLException {
 		Vector<Commande> allCmd = new Vector<Commande>();
 		
