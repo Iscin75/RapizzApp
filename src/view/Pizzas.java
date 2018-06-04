@@ -96,7 +96,7 @@ public class Pizzas extends JPanel {
 			lblIngrdients.setText(lblIngrdients.getText() + allPizzas.get(index[0]-1).ingredients.get(i).nom + ", " );
 		}
 		DecimalFormat df = new DecimalFormat("##.00");
-		lblPrixNaine.setText(String.valueOf(df.format(allPizzas.get(index[0]-1).base_prix * 0.66f)));
+		lblPrixNaine.setText(String.valueOf(df.format(allPizzas.get(index[0]-1).base_prix * 0.67f)));
 		lblPrixHumaine.setText(String.valueOf(df.format(allPizzas.get(index[0]-1).base_prix)));
 		lblPrixOgresse.setText(String.valueOf(df.format(allPizzas.get(index[0]-1).base_prix * 1.33f)));
 		}
