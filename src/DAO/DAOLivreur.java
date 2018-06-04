@@ -73,7 +73,7 @@ public class DAOLivreur extends DAO {
 	    	
 			toReturn = sum_money; 
 		}
-		
+		//lol
 		varReturn.close();
 		return toReturn;
 	}
