@@ -80,7 +80,7 @@ public int famousSizeID = 0;
 		try {
 			allLivreurs = DAOStat.getThatDAO().GetWorstDeliveryBoys();
 			valueWorstLivreur.setText(allLivreurs.get(0).nom + " " + allLivreurs.get(0).prenom);
-			
+			valueBestLivreur.setText(allLivreurs.get(allLivreurs.size()-1).nom + " " + allLivreurs.get(allLivreurs.size()-1).prenom);
 			allClients = DAOStat.getThatDAO().GetCustomersByNbOrders();
 			valueBestClient.setText(allClients.get(0).nom + " " + allClients.get(0).prenom);
 			valueWorstClient.setText(allClients.get(allClients.size() - 1).nom + " " + allClients.get(allClients.size() - 1).prenom);
@@ -94,32 +94,8 @@ public int famousSizeID = 0;
 			
 			e.printStackTrace();
 		}
+	
 		
-		try {
-			allLivreurs = DAOLivreur.getThatDAO().GetAll();
-		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		float maxMoney = 0;
-		float earnedMoney = 0;
-		int idMeilleurLivreur = 0;
-		
-		for (int i = 0; i < allLivreurs.size(); i++) {
-			try {
-				earnedMoney = DAOLivreur.getThatDAO().GetMoneyEarnedById(i);
-			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			if (maxMoney < earnedMoney) {
-				maxMoney = earnedMoney;
-				idMeilleurLivreur = i;
-			}
-		}
-		String  meilleurLivreur = allLivreurs.get(idMeilleurLivreur).nom + " " +
-								  allLivreurs.get(idMeilleurLivreur).prenom;
-		valueBestLivreur.setText(meilleurLivreur);
 		
 	}
 	
